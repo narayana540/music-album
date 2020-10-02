@@ -8,10 +8,10 @@ const progressBar = document.querySelector('#progress-bar'); // element where pr
 let pPause = document.querySelector('#play-pause'); // element where play and pause image appears
 
 songIndex = 0;
-songs = ['songs/01 - Jithula Jilladi.mp3','songs/08 - Hey Aasmaan.mp3','songs/02 - Hoyna Hoyna.mp3','songs/04 - Gangu Leader.mp3','songs/Koi-Mil-Gaya.mp3','songs/Tum_Se_Hi.mp3']; // object storing paths for audio objects
-thumbnails = ['images/albimage2.jpg',"images/img2.jpg",'images/Hoyna.jpg',"images/gangleader.jpg",'images/koi mil gaya.jpg',"images/tum se hi.jpg"]; // object storing paths for album covers and backgrounds
-songArtists = ['Ravinarayan', 'chandra varma', 'Aravind','Aravindacharya','Udit Narayan', 'Arjith']; // object storing track artists
-songTitles = [ "jithula jilladi","Hey Aasmaan","Hoyna Hoyna","Gangu Leader","Koi mil gaya","tum se hi"]; // object storing track titles
+songs = ['songs/04 - Ammukutti.mp3','songs/Kal Ho Naa Ho - Shahrukh Khan.mp3','songs/08 - Hey Aasmaan.mp3','songs/02 - Hoyna Hoyna.mp3','songs/04 - Gangu Leader.mp3','songs/Koi-Mil-Gaya.mp3','songs/Tum_Se_Hi.mp3']; // object storing paths for audio objects
+thumbnails = ['images/ammukutti.jpg','images/kal ho na hoo.jpg',"images/ammukutti.jpg",'images/Hoyna.jpg',"images/gangulead.jpg",'images/koi-mil-gaya.jpg',"images/tum se hi.jpg"]; // object storing paths for album covers and backgrounds
+songArtists = ['HemaChandra','Sonu Nigam', 'chandra varma', 'Aravind','Aravindacharya','Udit Narayan', 'Mohit Chauhan']; // object storing track artists
+songTitles = [ 'Ammukutti',"Kal ho naa ho","Hey Aasmaan","Hoyna Hoyna","Gangu Leader","Koi mil gaya","tum se hi"]; // object storing track titles
 
 // function where pp (play-pause) element changes based on playing boolean value - if play button clicked, change pp.src to pause button and call song.play() and vice versa.
 let playing = true;
@@ -42,16 +42,16 @@ song.addEventListener('ended', function(){
 // function where songIndex is incremented, song/thumbnail image/background image/song artist/song title changes to next index value, and playPause() runs to play next track 
 function nextSong() {
     songIndex++;
-    // if (songIndex > 1) {
-    //     songIndex = 0;
-    // };
+    if (songIndex >= songs.length) {
+        songIndex = 0;
+    };
     song.src = songs[songIndex];
     thumbnail.src = thumbnails[songIndex];
     background.src = thumbnails[songIndex];
 
     songArtist.innerHTML = songArtists[songIndex];
     songTitle.innerHTML = songTitles[songIndex];
-
+   
     playing = true;
     playPause();
 }
@@ -59,9 +59,9 @@ function nextSong() {
 // function where songIndex is decremented, song/thumbnail image/background image/song artist/song title changes to previous index value, and playPause() runs to play previous track 
 function previousSong() {
     songIndex--;
-    // if (songIndex < 0) {
-    //     songIndex = 1;
-    // };
+    if (songIndex < 0) {
+        songIndex = songs.length-1;
+    };
     song.src = songs[songIndex];
     thumbnail.src = thumbnails[songIndex];
     background.src = thumbnails[songIndex];
